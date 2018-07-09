@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single" android:id="@+id/nav_beit_service">
+        <item
+            android:id="@+id/nav_order_create"
+            android:icon="@drawable/ic_write_invoice"
+            android:title="@string/write_invoice" />
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/nav_favorite"
+            android:icon="@drawable/ic_favorite"
+            android:title="@string/favorite" />
+    </group>
+    <group android:id="@+id/nav_carrier_service">
+        <item
+            android:id="@+id/nav_carrier_setting"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/carrier_setting" />
+        <item
+            android:id="@+id/nav_achievement"
+            android:icon="@drawable/ic_achievement"
+            android:title="@string/achievement" />
+    </group>
+
+    <group android:id="@+id/nav_customer_service">
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_help"
+            android:title="@string/help" />
+        <item
+            android:id="@+id/nav_inquiry"
+            android:icon="@drawable/ic_inquiry"
+            android:title="@string/inquiry" />
+    </group>
+
+</menu>

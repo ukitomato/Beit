@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.google.developer.beit.eit">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/beit_square"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/beit_round"
+        android:supportsRtl="true"
+        android:theme="@style/WhiteTheme"
+        android:fullBackupContent="@xml/backup_descriptor">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/WhiteTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
