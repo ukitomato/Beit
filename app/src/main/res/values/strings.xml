@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">βeit</string>
+    <string name="app_name">Beit</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -11,7 +11,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-
     <string name="write_invoice">オーダーを書く</string>
     <string name="home">ホーム</string>
     <string name="favorite">お気に入り</string>
@@ -20,6 +19,40 @@
     <string name="help">ヘルプ</string>
     <string name="inquiry">お問い合わせ</string>
     <string name="customer_service">カスタマーサービス</string>
+    <string-array name="carrier_status">
+        <item>周回</item>
+        <item>待機</item>
+    </string-array>
+    <string-array name="carrier_method">
+        <item>徒歩</item>
+        <item>自転車</item>
+        <item>バイク</item>
+        <item>車</item>
+    </string-array>
+    <string-array name="carrier_destination">
+        <item>東京都 中央区</item>
+        <item>東京都 港区</item>
+        <item>東京都 新宿区</item>
+        <item>東京都 文京区</item>
+        <item>東京都 台東区</item>
+        <item>東京都 墨田区</item>
+        <item>東京都 江東区</item>
+        <item>東京都 品川区</item>
+        <item>東京都 目黒区</item>
+        <item>東京都 大田区</item>
+        <item>東京都 世田谷区</item>
+        <item>東京都 渋谷区</item>
+        <item>東京都 中野区</item>
+        <item>東京都 杉並区</item>
+        <item>東京都 豊島区</item>
+        <item>東京都 北区</item>
+        <item>東京都 荒川区</item>
+        <item>東京都 板橋区</item>
+        <item>東京都 練馬区</item>
+        <item>東京都 足立区</item>
+        <item>東京都 葛飾区</item>
+        <item>東京都 江戸川区</item>
+    </string-array>
 
 
 </resources>

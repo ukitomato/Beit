@@ -1,4 +1,4 @@
-package com.google.developer.beit.eit.Fragment;
+package com.google.developer.beit.beit.Fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.developer.beit.eit.R;
+import com.google.developer.beit.beit.R;
 
 public class PageFragment extends Fragment
 {

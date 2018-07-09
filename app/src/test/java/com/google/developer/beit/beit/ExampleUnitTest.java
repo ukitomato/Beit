@@ -1,4 +1,4 @@
-package com.google.developer.beit.eit;
+package com.google.developer.beit.beit;
 
 import org.junit.Test;
 

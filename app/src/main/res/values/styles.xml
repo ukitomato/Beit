@@ -25,8 +25,7 @@
     </style>
 
 
-    <style name="WhiteTheme" parent="@style/Theme.AppCompat.Light">
-    </style>
+    <style name="WhiteTheme" parent="@style/Theme.AppCompat.Light"></style>
 
     <style name="ToolbarTheme" parent="Theme.AppCompat.NoActionBar">
         <!--タイトルテキストの色-->
@@ -35,6 +34,28 @@
         <item name="android:textColorSecondary">@color/black</item>
     </style>
 
+    <style name="SpinnerTheme" parent="@android:style/Widget.Material.Spinner">
+        <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
+        <item name="android:spinnerDropDownItemStyle">@style/SpinnerItem.DropDownItem</item>
+    </style>
+
+    <style name="SpinnerItem" parent="@android:style/Widget.TextView.SpinnerItem">
+        <item name="android:textColor">@color/separator</item>
+    </style>
+
+    <style name="SpinnerItem.DropDownItem" parent="@android:style/Widget.DropDownItem.Spinner">
+        <item name="android:textColor">@color/separator</item>
+    </style>
+
+    <style name="AppTheme.BrandedLaunch" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/branded_logo</item>
+    </style>
+
+    <style name="AppTheme.Launcher">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+        <!-- Optional, on Android 5+ you can modify the colorPrimaryDark color to match the windowBackground color for further branding-->
+        <!-- <item name="colorPrimaryDark">@android:color/white</item> -->
+    </style>
 
 
 </resources>
