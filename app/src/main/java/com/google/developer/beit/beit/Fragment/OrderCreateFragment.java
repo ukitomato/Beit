@@ -5,9 +5,11 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.google.developer.beit.beit.R;
 
@@ -31,6 +33,9 @@ public class OrderCreateFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private static Boolean[] careButtonsState = {false, false, false, false, false, false};
+    private static Boolean[] methodButtonsState = {false, false, false};
 
     public OrderCreateFragment() {
         // Required empty public constructor
@@ -61,13 +66,62 @@ public class OrderCreateFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order_create, container, false);
+
+
+        View view = inflater.inflate(R.layout.fragment_order_create, container, false);
+
+
+        final ImageView[] methodButtons = new ImageView[3];
+        methodButtons[0] = view.findViewById(R.id.order_button_walk);
+        methodButtons[1] = view.findViewById(R.id.order_button_bike);
+        methodButtons[2] = view.findViewById(R.id.order_button_car);
+        for (int i = 0; i < 3; i++) {
+            methodButtons[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int i = 0;
+                    for (; i < 3; i++) {
+                        methodButtonsState[i] = v.equals(methodButtons[i]);
+                    }
+                    mListener.onMethodButtonClick(v, methodButtons);
+                }
+            });
+        }
+
+        final ImageView[] careButtons = new ImageView[6];
+        careButtons[0] = view.findViewById(R.id.order_care_broken);
+        careButtons[1] = view.findViewById(R.id.order_care_updown);
+        careButtons[2] = view.findViewById(R.id.order_care_careful);
+        careButtons[3] = view.findViewById(R.id.order_care_water);
+        careButtons[4] = view.findViewById(R.id.order_care_cutter);
+        careButtons[5] = view.findViewById(R.id.order_care_sunlight);
+        for (int i = 0; i < 6; i++) {
+            careButtons[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int i = 0;
+                    for (; i < 6; i++) {
+                        if (v.equals(careButtons[i])) {
+                            careButtonsState[i] = !careButtonsState[i];
+                            break;
+                        }
+                    }
+
+                    mListener.onCareButtonClick(v, careButtonsState[i]);
+                }
+            });
+        }
+
+
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -107,5 +161,12 @@ public class OrderCreateFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+
+        void onMethodButtonClick(View v, ImageView[] buttons);
+
+        void onCareButtonClick(View v, boolean state);
+
     }
+
+
 }

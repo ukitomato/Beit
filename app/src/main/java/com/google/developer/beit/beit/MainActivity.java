@@ -1,10 +1,14 @@
 package com.google.developer.beit.beit;
 
 
-import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,10 +21,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.google.developer.beit.beit.Fragment.CarrierAchievementsFragment;
 import com.google.developer.beit.beit.Fragment.CarrierSettingFragment;
@@ -29,8 +35,8 @@ import com.google.developer.beit.beit.Fragment.HelpFragment;
 import com.google.developer.beit.beit.Fragment.HomeFragment;
 import com.google.developer.beit.beit.Fragment.InquiryFragment;
 import com.google.developer.beit.beit.Fragment.OrderCreateFragment;
-import com.google.developer.beit.beit.Fragment.PageFragment;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 
@@ -40,14 +46,16 @@ public class MainActivity extends AppCompatActivity
         CarrierAchievementsFragment.OnFragmentInteractionListener, CarrierSettingFragment.OnFragmentInteractionListener,
         FavoriteFragment.OnFragmentInteractionListener, HelpFragment.OnFragmentInteractionListener,
         InquiryFragment.OnFragmentInteractionListener, FragmentTabHost.OnTabChangeListener,
-        ViewPager.OnPageChangeListener, PageFragment.OnFragmentInteractionListener {
+        ViewPager.OnPageChangeListener {
     private static final String[] pageTitle = {"キャリアー設定", "実績"};
     private static final Class[] carrierFragments = {CarrierSettingFragment.class, CarrierAchievementsFragment.class};
-
-
+    private static final String CARE_UNSELECTED = "android.graphics.drawable.GradientDrawable$GradientState@41268ce";
+    private static final String CARE_SELECTED = "android.graphics.drawable.GradientDrawable$GradientState@d0fefc";
     FrameLayout content;
     TabLayout tabLayout;
     ViewPager viewPager;
+    Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +63,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         tabLayout = findViewById(R.id.tabs);
@@ -148,7 +155,21 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_order_write) {
+            Log.d("onMenuItemClick", String.valueOf(id));
+            Fragment fragment = null;
+            Objects.requireNonNull(getSupportActionBar()).setTitle("オーダー作成");
+            Class fragmentClass = OrderCreateFragment.class;
+            content.setVisibility(View.VISIBLE);
+            tabLayout.setVisibility(View.GONE);
+            viewPager.setVisibility(View.GONE);
+            try {
+                fragment = (Fragment) Objects.requireNonNull(fragmentClass).newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content, fragment).commit();
             return true;
         }
 
@@ -165,24 +186,31 @@ public class MainActivity extends AppCompatActivity
         boolean carrierFlag = false;
         switch (id) {
             case R.id.nav_home:
+                Objects.requireNonNull(getSupportActionBar()).setTitle("ホーム");
                 fragmentClass = HomeFragment.class;
                 break;
             case R.id.nav_order_create:
+                Objects.requireNonNull(getSupportActionBar()).setTitle("オーダー作成");
                 fragmentClass = OrderCreateFragment.class;
                 break;
             case R.id.nav_favorite:
+                Objects.requireNonNull(getSupportActionBar()).setTitle("お気に入り");
                 fragmentClass = FavoriteFragment.class;
                 break;
             case R.id.nav_help:
+                Objects.requireNonNull(getSupportActionBar()).setTitle("ヘルプ");
                 fragmentClass = InquiryFragment.class;
                 break;
             case R.id.nav_inquiry:
+                Objects.requireNonNull(getSupportActionBar()).setTitle("問い合わせ");
                 fragmentClass = InquiryFragment.class;
                 break;
             case R.id.nav_carrier_setting:
+                Objects.requireNonNull(getSupportActionBar()).setTitle("キャリアー設定");
                 carrierFlag = true;
                 break;
             case R.id.nav_achievement:
+                Objects.requireNonNull(getSupportActionBar()).setTitle("実績");
                 carrierFlag = true;
                 break;
         }
@@ -216,6 +244,25 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public void onMethodButtonClick(View view, ImageView[] buttons) {
+        for (ImageView button : buttons) {
+            button.setBackground(getDrawable(R.drawable.round_frame_gray));
+        }
+        view.setBackground(getDrawable(R.drawable.round_frame_white));
+    }
+
+    @Override
+    public void onCareButtonClick(View view, boolean state) {
+        if (state) {
+            view.setBackground(getDrawable(R.drawable.round_frame_white));
+        } else {
+            view.setBackground(getDrawable(R.drawable.round_frame_gray));
+        }
+
+
+    }
+
+    @Override
     public void onTabChanged(String tabId) {
 
     }
@@ -233,4 +280,6 @@ public class MainActivity extends AppCompatActivity
     public void onPageScrollStateChanged(int state) {
 
     }
+
+
 }
